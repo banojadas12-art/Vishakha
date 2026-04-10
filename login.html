@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Vishakha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f1f3f6; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            display: flex;
+            width: 850px;
+            height: 528px;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #878787;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .close-btn:hover {
+            color: #000;
+        }
+
+        /* Left Side */
+        .login-left {
+            width: 40%;
+            background-color: #2874f0; /* Flipkart Blue */
+            padding: 40px 33px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .login-left-text h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .login-left-text p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #dbe4fc;
+        }
+
+        .login-left-img {
+            text-align: center;
+        }
+
+        .login-left-img svg {
+            width: 100%;
+            max-width: 200px;
+        }
+
+        /* Right Side */
+        .login-right {
+            width: 60%;
+            padding: 56px 35px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-group input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 0;
+            font-size: 15px;
+            outline: none;
+            color: #000;
+            transition: all 0.2s ease;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            font-size: 15px;
+            color: #878787;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .input-group input:focus,
+        .input-group input:valid {
+            border-bottom-color: #2874f0;
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: -12px;
+            font-size: 12px;
+            color: #878787;
+        }
+
+        .terms {
+            font-size: 12px;
+            color: #878787;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .terms a {
+            color: #2874f0;
+            text-decoration: none;
+        }
+
+        .btn-request {
+            background-color: #fb641b; /* Flipkart Orange */
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 2px;
+            cursor: pointer;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn-request:hover {
+            background-color: #f3580b;
+        }
+
+        .create-account {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .create-account a {
+            color: #2874f0;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                width: 90%;
+                flex-direction: column;
+                height: auto;
+            }
+            .login-left, .login-right {
+                width: 100%;
+            }
+            .login-left {
+                padding: 30px;
+            }
+            .login-right {
+                padding: 40px 30px;
+            }
+            .login-left-img {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <a href="endterm.html" class="close-btn">&times;</a>
+        
+        <div class="login-left">
+            <div class="login-left-text">
+                <h2>Login</h2>
+                <p>Get access to your Orders, Wishlist and Recommendations</p>
+            </div>
+            <div class="login-left-img">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 200 L350 200 L350 250 L50 250 Z" fill="#1b4bc0" />
+                    <rect x="100" y="80" width="200" height="130" fill="#fff" rx="4" />
+                    <rect x="110" y="90" width="180" height="100" fill="#f0f0f0" rx="2" />
+                    <circle cx="200" cy="130" r="20" fill="#ccc" />
+                    <rect x="170" y="160" width="60" height="30" fill="#ccc" rx="10" />
+                    <circle cx="320" cy="180" r="15" fill="#fce01c" />
+                    <rect x="70" y="160" width="40" height="40" fill="#fb641b" rx="2" />
+                    <path d="M150 50 Q200 20 250 50" fill="none" stroke="#60a5fa" stroke-width="4" />
+                    <circle cx="160" cy="40" r="8" fill="#fce01c" />
+                </svg>
+            </div>
+        </div>
+        
+        <div class="login-right">
+            <form action="#">
+                <div class="input-group">
+                    <input type="text" id="email" required>
+                    <label for="email">Enter Email/Mobile number</label>
+                </div>
+                
+                <p class="terms">
+                    By continuing, you agree to Vishakha's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+                </p>
+                
+                <button type="submit" class="btn-request">Request OTP</button>
+            </form>
+            
+            <div class="create-account">
+                <a href="#">New to Vishakha? Create an account</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

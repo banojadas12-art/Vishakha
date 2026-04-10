@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Vishakha</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1a1f3a;
+            --teal: #2a7f8a;
+            --teal-light: #4aa8b2;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --gold: #fbbf24;
+            --shadow-soft: 0 10px 40px rgba(26, 31, 58, 0.05);
+            --shadow-hover: 0 20px 60px rgba(26, 31, 58, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--navy);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            padding: 0 5%;
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            height: fit-content;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            height: 600px;
+        }
+
+        .gallery-item:not(:first-child) {
+            height: 300px;
+        }
+
+        /* Info Section */
+        .product-info {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .breadcrumbs {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #4ade80;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .hot-deal {
+            color: #ef4444;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .current-price {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 1.2rem;
+        }
+
+        .discount {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        /* Offers */
+        .offers-container {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .offers-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .offer-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .offer-item i {
+            color: var(--teal);
+            margin-top: 0.3rem;
+        }
+
+        .offer-apply {
+            color: var(--teal);
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-cart,
+        .btn-buy {
+            flex: 1;
+            padding: 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: none;
+        }
+
+        .btn-cart {
+            background: var(--white);
+            border: 2px solid var(--navy);
+            color: var(--navy);
+        }
+
+        .btn-cart:hover {
+            background: var(--off-white);
+        }
+
+        .btn-buy {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-buy:hover {
+            background: #facc15;
+        }
+
+        /* Delivery */
+        .delivery-section {
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .delivery-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .pincode-check {
+            display: flex;
+            border-bottom: 2px solid var(--teal);
+            padding-bottom: 0.2rem;
+        }
+
+        .pincode-check input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            width: 100px;
+        }
+
+        .pincode-check span {
+            color: var(--teal);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1000px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item:first-child {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="endterm.html" class="logo">Vishakha</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="endterm.html">Home</a></li>
+                <li><a href="products.html">Collections</a></li>
+                <li><a href="endterm.html#about">About</a></li>
+                <li><a href="endterm.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div style="display: flex; gap: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-user"></i>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Left: Gallery -->
+        <div class="gallery-container">
+            <div class="gallery-item"><img src="public/16.png" alt="Product" id="mainImg"></div>
+        </div>
+
+        <!-- Right: Info -->
+        <div class="product-info">
+            <div class="breadcrumbs">
+                <a href="endterm.html">Home</a> / <a href="products.html">Jewelry</a> / <span
+                    id="breadCategory">Category</span>
+            </div>
+
+            <h1 class="product-title" id="pTitle">Loading...</h1>
+
+            <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                <div class="rating-badge">4.2 <i class="fas fa-star"
+                        style="font-size: 0.7rem; margin-left: 0.2rem;"></i></div>
+                <span style="color: #94a3b8; font-weight: 500;">108 Ratings & 42 Reviews</span>
+            </div>
+
+            <div class="hot-deal"><i class="fas fa-fire"></i> Hot Deal</div>
+            <div class="price-row">
+                <span class="current-price" id="pPrice">₹0</span>
+                <span class="original-price" id="pOriginal">₹0</span>
+                <span class="discount" id="pDiscount">75% off</span>
+            </div>
+
+            <div class="offers-container">
+                <div class="offers-title">
+                    <i class="fas fa-tag"></i> Available Offers
+                </div>
+                <div class="offer-item">
+                    <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                    <span><b>Bank Offer</b> 5% Cashback on Vishakha Axis Bank Card</span>
+                    <span class="offer-apply">T&C</span>
+                </div>
+                <div class="offer-item">
+                    <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                    <span><b>Special Price</b> Get extra ₹50 off (price inclusive of cashback)</span>
+                    <span class="offer-apply">T&C</span>
+                </div>
+                <div class="offer-item">
+                    <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+                    <span><b>Partner Offer</b> Buy this product and get upto ₹500 off*</span>
+                    <span class="offer-apply">Know More</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                <button class="btn-buy"><i class="fas fa-bolt"></i> Buy Now</button>
+            </div>
+
+            <div class="delivery-section">
+                <div class="delivery-header">
+                    <span style="font-weight: 600;">Delivery</span>
+                    <div class="pincode-check">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 0.5rem; color: #64748b;"></i>
+                        <input type="text" placeholder="Enter Pincode">
+                        <span>Check</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.95rem; color: #64748b;">Delivery by 12 Apr, Friday | <span
+                        style="color: #22c55e;">Free</span> <span style="text-decoration: line-through;">₹40</span></p>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: var(--navy); color: var(--white); padding: 4rem 5%; margin-top: 4rem;">
+        <div style="max-width: 1400px; margin: 0 auto; text-align: center;">
+            <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem;">Vishakha</h2>
+            <p style="opacity: 0.7;">&copy; 2024 Vishakha. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Comprehensive data for key items, generic fallback for others
+        const productData = {
+            "1": { title: "Golden Horizon Ring", price: "450", original: "1,800", cat: "Rings" },
+            "2": { title: "Azure Dream Earrings", price: "320", original: "1,280", cat: "Earrings" },
+            "3": { title: "Butterfly Enchantment", price: "550", original: "2,200", cat: "Necklaces" },
+            "4": { title: "Silver Mist Bracelet", price: "280", original: "1,120", cat: "Bracelets" },
+            "5": { title: "Royal Velvet Choker", price: "680", original: "2,720", cat: "Necklaces" },
+            "16": { title: "Dainty Chain Necklace", price: "299", original: "1,196", cat: "Necklaces" },
+            "20": { title: "Delicate Bracelet Stack", price: "195", original: "780", cat: "Bracelets" },
+            "26": { title: "Modern Hoops", price: "145", original: "580", cat: "Earrings" },
+            "27": { title: "Pearl Signet Ring", price: "120", original: "480", cat: "Rings" }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const pid = params.get('id') || "16";
+
+        // Generate product info
+        const safePrice = productData[pid] ? productData[pid].price : (100 + (pid * 10)); // Dynamic fallback
+        const product = productData[pid] || {
+            title: `Vishakha Piece No. ${pid}`,
+            price: safePrice,
+            original: safePrice * 4,
+            cat: "Collection"
+        };
+
+        // Populate Content
+        document.getElementById('pTitle').textContent = product.title;
+        document.getElementById('pPrice').textContent = `₹${product.price}`;
+        document.getElementById('pOriginal').textContent = `₹${product.original}`;
+        document.getElementById('breadCategory').textContent = product.cat;
+
+        // Gallery logic: Use the product image as main, others as details
+        const mainImgPath = `public/${pid}.png`;
+        document.getElementById('mainImg').src = mainImgPath;
+
+    </script>
+</body>
+
+</html>
