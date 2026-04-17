@@ -10,6 +10,11 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @font-face {
+            font-family: 'Kugile Demo';
+            src: url('public/Kugile_Demo.ttf') format('truetype');
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -48,7 +53,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 1rem 0;
@@ -125,8 +130,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(26, 31, 58, 0.7), rgba(42, 127, 138, 0.3)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a1f3a" width="1200" height="800"/><circle fill="%232a7f8a" opacity="0.1" cx="200" cy="200" r="300"/><circle fill="%234aa8b2" opacity="0.05" cx="1000" cy="600" r="400"/></svg>');
+            background: linear-gradient(rgba(26, 31, 58, 0.4), rgba(42, 127, 138, 0.2));
             background-size: cover;
             background-position: center;
             display: flex;
@@ -135,9 +139,32 @@
             text-align: center;
             color: var(--white);
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
         }
 
         .hero-content {
+            position: relative;
+            z-index: 1;
             max-width: 800px;
             padding: 0 2rem;
             opacity: 0;
@@ -145,6 +172,7 @@
         }
 
         .hero h1 {
+            font-family: 'Kugile Demo', serif;
             font-size: clamp(3rem, 8vw, 6rem);
             margin-bottom: 1.5rem;
             letter-spacing: -2px;
@@ -333,7 +361,8 @@
             overflow: hidden;
         }
 
-        .product-image img {
+        .product-image img,
+        .product-image video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -491,7 +520,7 @@
         <nav>
             <a href="#" class="logo">Vishakha</a>
             <ul class="nav-links">
-                <li><a href="#collections">Collections</a></li>
+                <li><a href="products.html">Collections</a></li>
                 <li><a href="products.html">Shop</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -502,6 +531,10 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="public/v1.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Everyday<br>Elevated</h1>
             <p>Demi-fine jewelry for the modern woman who wears her ambition like her favorite necklace.</p>
@@ -552,7 +585,11 @@
         </div>
         <div class="product-grid">
             <div class="product-card" data-category="necklaces" data-id="16">
-                <div class="product-image"><img src="public/16.png" alt="Dainty Chain Necklace"></div>
+                <div class="product-image">
+                    <video autoplay loop muted playsinline>
+                        <source src="public/v2.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div class="product-info">
                     <h3>Dainty Chain Necklace</h3>
                     <div class="product-price">₹299</div>
@@ -561,7 +598,11 @@
                 </div>
             </div>
             <div class="product-card" data-category="earrings" data-id="26">
-                <div class="product-image"><img src="public/26.png" alt="Modern Hoops"></div>
+                <div class="product-image">
+                    <video autoplay loop muted playsinline>
+                        <source src="public/v5.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div class="product-info">
                     <h3>Modern Hoops</h3>
                     <div class="product-price">₹145</div>
@@ -570,7 +611,11 @@
                 </div>
             </div>
             <div class="product-card" data-category="rings" data-id="27">
-                <div class="product-image"><img src="public/27.png" alt="Pearl Signet Ring"></div>
+                <div class="product-image">
+                    <video autoplay loop muted playsinline>
+                        <source src="public/v4.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div class="product-info">
                     <h3>Pearl Signet Ring</h3>
                     <div class="product-price">₹120</div>
@@ -579,7 +624,11 @@
                 </div>
             </div>
             <div class="product-card" data-category="bracelets" data-id="20">
-                <div class="product-image"><img src="public/20.png" alt="Delicate Bracelet Stack"></div>
+                <div class="product-image">
+                    <video autoplay loop muted playsinline>
+                        <source src="public/v3.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div class="product-info">
                     <h3>Delicate Bracelet Stack</h3>
                     <div class="product-price">₹195</div>
@@ -691,10 +740,10 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.background = 'rgba(255, 255, 255, 0.8)';
                 header.style.boxShadow = '0 10px 40px rgba(26, 31, 58, 0.1)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.background = 'rgba(255, 255, 255, 0.7)';
                 header.style.boxShadow = 'none';
             }
         });
